@@ -1,4 +1,4 @@
-const margin = { top: 40, right: 20, bottom: 30, left: 100 },
+const margin = { top: 80, right: 20, bottom: 30, left: 100 },
   width = 600 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -24,8 +24,8 @@ d3.csv("data/dummy.csv")
 
     const yScale = d3.scaleBand()
       .domain(processedData.map(d => d.chef))
-      .range([height, 0])
-      .paddingInner(0.2); // Increase padding for overlapping effect
+      .range([0, height])
+      .paddingInner(0.2); // Add padding between ridgelines
 
     // Define area generator for ridgeline
     const area = d3.area()
@@ -42,6 +42,24 @@ d3.csv("data/dummy.csv")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+    // Add gridlines
+    const xGridlines = d3.axisBottom(xScale)
+      .tickSize(-height)
+      .tickFormat("");
+
+    const yGridlines = d3.axisLeft(yScale)
+      .tickSize(-width)
+      .tickFormat("");
+
+    svg.append("g")
+      .attr("class", "grid")
+      .attr("transform", `translate(0, ${height})`)
+      .call(xGridlines);
+
+    svg.append("g")
+      .attr("class", "grid")
+      .call(yGridlines);
+
     // Draw ridgelines for each chef
     svg.selectAll(".chef")
       .data(processedData)
@@ -50,8 +68,8 @@ d3.csv("data/dummy.csv")
       .attr("class", "chef")
       .attr("d", d => area(d.values))
       .attr("fill", (d, i) => colors(i)) // Assign different colors to each ridgeline
-      .attr("opacity", 0.8) // Increase opacity for better visibility
-      .attr("transform", (d, i) => `translate(0, ${yScale(d.chef) - i * 5})`); // Adjust position for overlapping effect
+      .attr("opacity", 0.8) // Set opacity for visibility
+      .attr("transform", d => `translate(0, ${yScale(d.chef)})`); // Position each ridgeline
 
     // Add X-axis
     svg.append("g")
@@ -64,12 +82,11 @@ d3.csv("data/dummy.csv")
     // Add Y-axis labels for chefs
     svg.append("g")
       .attr("class", "axis y")
-      .call(d3.axisLeft(yScale))
+      .call(d3.axisLeft(yScale).tickSizeOuter(0)) // Remove the outer tick
       .selectAll("text")
       .attr("text-anchor", "end")
       .attr("dx", "-0.8em")
       .attr("dy", "0.35em")
-      .attr("transform", "rotate(-45)")
       .style("font-family", "Arial, sans-serif")
       .style("font-size", "14px"); // Increase font size of y-axis labels
 
@@ -90,6 +107,10 @@ d3.csv("data/dummy.csv")
 
     svg.selectAll(".axis text")
       .style("fill", "#666");
+
+    svg.selectAll(".grid line")
+      .style("stroke", "#eee")
+      .style("stroke-opacity", 0.7);
 
     svg.selectAll(".chef")
       .style("mix-blend-mode", "multiply") // Apply color blending for a modern look
