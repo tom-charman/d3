@@ -2,18 +2,25 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
+    line-height: 1.6;
   }
   
   /* Header styles */
   header {
-    background-color: #f0f0f0;
+    background-color: #fff;
     padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
   }
   
   .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -24,72 +31,91 @@ body {
   .logo {
     font-size: 2em;
     font-weight: bold;
-    color: #007bff;
+    color: #4CAF50;
+    text-decoration: none;
   }
   
-  nav {
-    display: flex;
+  nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
   }
   
-  nav li {
-    margin-right: 20px;
+  nav ul li {
+    margin-left: 30px;
   }
   
-  nav a {
+  nav ul li a {
     text-decoration: none;
     color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
   }
   
-  nav a:hover {
-    color: #007bff;
+  nav ul li a:hover {
+    color: #4CAF50;
   }
   
   /* Main content styles */
   main {
-    padding: 50px 0;
+    margin-top: 100px;
   }
   
   .hero {
     background-color: #f5f5f5;
-    padding: 50px 0;
+    padding: 100px 0;
     text-align: center;
   }
   
   .hero h1 {
-    font-size: 2.5em;
+    font-size: 3em;
     margin-bottom: 20px;
+    color: #4CAF50;
   }
   
   .hero p {
     font-size: 1.2em;
-    line-height: 1.5;
-    margin-bottom: 30px;
+    max-width: 800px;
+    margin: 0 auto 30px;
   }
   
   .hero button {
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
   }
   
   .hero button:hover {
-    background-color: #0069d9;
+    background-color: #45a049;
+  }
+  
+  .about {
+    padding: 100px 0;
+  }
+  
+  .about h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #4CAF50;
+  }
+  
+  .about p {
+    margin-bottom: 20px;
   }
   
   .data-insights {
-    padding: 50px 0;
-    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 100px 0;
   }
   
   .data-insights h2 {
-    font-size: 1.8em;
+    font-size: 2.5em;
     margin-bottom: 20px;
+    color: #4CAF50;
   }
   
   .data-insights p {
@@ -102,42 +128,84 @@ body {
     margin: 0 auto;
   }
   
-  .call-to-action {
-    padding: 50px 0;
-    background-color: #f0f0f0;
+  .solutions {
+    padding: 100px 0;
+  }
+  
+  .solutions h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #4CAF50;
     text-align: center;
   }
   
+  .solution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .solution img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .solution h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #4CAF50;
+  }
+  
+  .solution p {
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  .call-to-action {
+    background-color: #4CAF50;
+    padding: 100px 0;
+    text-align: center;
+    color: #fff;
+  }
+  
   .call-to-action h2 {
-    font-size: 1.8em;
+    font-size: 2.5em;
     margin-bottom: 20px;
   }
   
   .call-to-action p {
+    font-size: 1.2em;
     margin-bottom: 30px;
   }
   
   .call-to-action button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+    background-color: #fff;
+    color: #4CAF50;
+    padding: 12px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s, color 0.3s;
   }
   
   .call-to-action button:hover {
-    background-color: #0069d9;
+    background-color: #f5f5f5;
+    color: #45a049;
   }
   
   /* Footer styles */
   footer {
-    background-color: #f0f0f0;
+    background-color: #333;
     padding: 20px 0;
     text-align: center;
+    color: #fff;
   }
   
   footer p {
     margin: 0;
   }
-  
