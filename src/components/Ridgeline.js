@@ -1,12 +1,19 @@
-const margin = { top: 80, right: 20, bottom: 30, left: 100 },
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+
+const Ridgeline = () => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const margin = { top: 80, right: 20, bottom: 30, left: 100 },
   width = 600 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
-// Color palette for the ridgelines
-const colors = d3.scaleOrdinal(d3.schemeCategory10);
+  const colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-// Parse CSV data
-d3.csv("data/dummy.csv")
+  d3.select(chartRef.current).selectAll('*').remove();
+  
+  d3.csv("data/dummy.csv")
   .then(data => {
     // Process data: convert strings to numbers
     const processedData = data.map(d => {
@@ -124,3 +131,9 @@ d3.csv("data/dummy.csv")
   .catch(error => {
     console.error("Error loading data:", error);
   });
+  }, []);
+
+  return <div ref={chartRef} id="chart" />;
+};
+
+export default Ridgeline;
